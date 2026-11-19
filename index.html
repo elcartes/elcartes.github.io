@@ -98,30 +98,39 @@
 
 
         /* =================================
-           CONTENTS
+           MAIN CONTENTS
         ================================= */
 
         .app-contents {
             flex: 1;
             min-height: 0;
 
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
 
-            padding: 16px;
+            gap: 12px;
+
+            padding: 12px 16px;
 
             background: #f8f9fa;
 
-            position: relative;
+            overflow: hidden;
         }
 
 
         /* =================================
-           SLIDER
+           TOP SLIDER AREA
         ================================= */
 
         .contents-slider {
             width: 100%;
-            height: 100%;
+
+            height: 35%;
+            min-height: 160px;
+
+            flex-shrink: 0;
+
+            position: relative;
         }
 
         .contents-slider .carousel-inner {
@@ -139,19 +148,24 @@
             overflow-y: auto;
             overflow-x: hidden;
 
-            padding: 5px 35px 20px;
+            padding: 10px 35px 25px;
 
             -webkit-overflow-scrolling: touch;
 
             overscroll-behavior: contain;
         }
 
-        /* SLIDE ARROWS */
+
+        /* =================================
+           SLIDE ARROWS
+        ================================= */
 
         .contents-slider .carousel-control-prev,
         .contents-slider .carousel-control-next {
             width: 32px;
+
             opacity: 1;
+
             z-index: 5;
         }
 
@@ -172,10 +186,14 @@
             background-size: 60%;
 
             border-radius: 50%;
+
             padding: 5px;
         }
 
-        /* SLIDE INDICATORS */
+
+        /* =================================
+           SLIDE INDICATORS
+        ================================= */
 
         .contents-slider .carousel-indicators {
             margin-bottom: 0;
@@ -195,12 +213,69 @@
 
 
         /* =================================
+           BOTTOM DETAIL AREA
+        ================================= */
+
+        .detail-area {
+            flex: 1;
+            min-height: 0;
+
+            width: 100%;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            background: #ffffff;
+
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+
+            padding: 16px;
+
+            -webkit-overflow-scrolling: touch;
+
+            overscroll-behavior: contain;
+        }
+
+
+        /* DETAIL PANELS */
+
+        .detail-panel {
+            display: none;
+
+            width: 100%;
+        }
+
+        .detail-panel.active {
+            display: block;
+        }
+
+
+        /* =================================
+           DETAIL HEADER
+        ================================= */
+
+        .detail-title {
+            font-size: 17px;
+            font-weight: bold;
+
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+
+            border-bottom: 1px solid #dee2e6;
+
+            color: #212529;
+        }
+
+
+        /* =================================
            FOOTER
         ================================= */
 
         .app-footer {
             min-height: 45px;
             height: 45px;
+
             flex-shrink: 0;
 
             background: #ffffff;
@@ -224,34 +299,6 @@
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        /* FOOTER BUTTON */
-
-        .footer-info button {
-            background: none;
-            border: none;
-
-            color: #6c757d;
-
-            font-size: 11px;
-
-            padding: 0;
-            margin: 0 4px;
-
-            cursor: pointer;
-
-            outline: none;
-            box-shadow: none;
-        }
-
-        .footer-info button:hover,
-        .footer-info button:focus,
-        .footer-info button:active {
-            color: #6c757d;
-            background: none;
-            outline: none;
-            box-shadow: none;
         }
 
 
@@ -366,10 +413,15 @@
 
 
     <!-- =================================
-         CONTENTS SLIDER
+         MAIN CONTENTS
     ================================= -->
 
     <main class="app-contents">
+
+
+        <!-- =================================
+             TOP SLIDER
+        ================================= -->
 
         <div id="contentsSlider"
              class="carousel slide contents-slider"
@@ -419,7 +471,9 @@
             <div class="carousel-inner">
 
 
-                <!-- SLIDE 1 -->
+                <!-- =================================
+                     SLIDE 1
+                ================================= -->
 
                 <div class="carousel-item active">
 
@@ -442,27 +496,6 @@
                                     화면 폭으로 표시됩니다.
                                 </p>
 
-                                <button class="btn btn-primary w-100"
-                                        id="testButton">
-
-                                    버튼 테스트
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card shadow-sm mb-3">
-
-                            <div class="card-body">
-
-                                <h6>메인 콘텐츠 영역</h6>
-
-                                <p class="text-secondary mb-0">
-                                    첫 번째 슬라이드입니다.
-                                </p>
-
                             </div>
 
                         </div>
@@ -473,7 +506,9 @@
 
 
 
-                <!-- SLIDE 2 -->
+                <!-- =================================
+                     SLIDE 2
+                ================================= -->
 
                 <div class="carousel-item">
 
@@ -489,22 +524,8 @@
 
                                 <h6>두 번째 화면</h6>
 
-                                <p class="text-secondary">
-                                    두 번째 슬라이드 콘텐츠입니다.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card shadow-sm mb-3">
-
-                            <div class="card-body">
-
-                                <h6>추가 콘텐츠</h6>
-
                                 <p class="text-secondary mb-0">
-                                    필요한 내용을 자유롭게 추가할 수 있습니다.
+                                    두 번째 슬라이드입니다.
                                 </p>
 
                             </div>
@@ -517,7 +538,9 @@
 
 
 
-                <!-- SLIDE 3 -->
+                <!-- =================================
+                     SLIDE 3
+                ================================= -->
 
                 <div class="carousel-item">
 
@@ -533,23 +556,8 @@
 
                                 <h6>세 번째 화면</h6>
 
-                                <p class="text-secondary">
-                                    좌우 스와이프 또는 화살표 버튼으로
-                                    이동할 수 있습니다.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card shadow-sm mb-3">
-
-                            <div class="card-body">
-
-                                <h6>상세 콘텐츠</h6>
-
                                 <p class="text-secondary mb-0">
-                                    슬라이드별로 독립적인 콘텐츠를 표시합니다.
+                                    세 번째 슬라이드입니다.
                                 </p>
 
                             </div>
@@ -562,7 +570,9 @@
 
 
 
-                <!-- SLIDE 4 -->
+                <!-- =================================
+                     SLIDE 4
+                ================================= -->
 
                 <div class="carousel-item">
 
@@ -578,22 +588,8 @@
 
                                 <h6>네 번째 화면</h6>
 
-                                <p class="text-secondary">
-                                    마지막 슬라이드입니다.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card shadow-sm mb-3">
-
-                            <div class="card-body">
-
-                                <h6>마지막 콘텐츠</h6>
-
                                 <p class="text-secondary mb-0">
-                                    다음 슬라이드는 첫 번째 화면으로 돌아갑니다.
+                                    네 번째 슬라이드입니다.
                                 </p>
 
                             </div>
@@ -642,6 +638,252 @@
 
         </div>
 
+
+
+        <!-- =================================
+             BOTTOM DETAIL CONTENTS
+        ================================= -->
+
+        <div class="detail-area" id="detailArea">
+
+
+            <!-- =================================
+                 DETAIL 1
+            ================================= -->
+
+            <div class="detail-panel active"
+                 data-detail="0">
+
+                <div class="detail-title">
+                    메인 콘텐츠 상세
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>메인 상세 정보</h6>
+
+                        <p class="text-secondary">
+                            첫 번째 슬라이드에 연결된 하단 콘텐츠입니다.
+                        </p>
+
+                        <button class="btn btn-primary w-100"
+                                id="testButton">
+
+                            버튼 테스트
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>상세 콘텐츠 1</h6>
+
+                        <p class="text-secondary mb-0">
+                            이 영역에는 원하는 HTML 콘텐츠를 추가할 수 있습니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>상세 콘텐츠 2</h6>
+
+                        <p class="text-secondary mb-0">
+                            콘텐츠가 계속 추가되어도 하단 영역만 스크롤됩니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 DETAIL 2
+            ================================= -->
+
+            <div class="detail-panel"
+                 data-detail="1">
+
+                <div class="detail-title">
+                    콘텐츠 영역 2 상세
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>두 번째 상세 정보</h6>
+
+                        <p class="text-secondary">
+                            두 번째 슬라이드와 연결된 콘텐츠입니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 정보</h6>
+
+                        <p class="text-secondary mb-0">
+                            두 번째 화면에 필요한 내용을 입력하세요.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 DETAIL 3
+            ================================= -->
+
+            <div class="detail-panel"
+                 data-detail="2">
+
+                <div class="detail-title">
+                    콘텐츠 영역 3 상세
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>세 번째 상세 정보</h6>
+
+                        <p class="text-secondary">
+                            세 번째 슬라이드와 연결된 콘텐츠입니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 정보</h6>
+
+                        <p class="text-secondary mb-0">
+                            세 번째 화면에 필요한 내용을 입력하세요.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 콘텐츠</h6>
+
+                        <p class="text-secondary mb-0">
+                            필요한 만큼 계속 추가할 수 있습니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 DETAIL 4
+            ================================= -->
+
+            <div class="detail-panel"
+                 data-detail="3">
+
+                <div class="detail-title">
+                    콘텐츠 영역 4 상세
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>네 번째 상세 정보</h6>
+
+                        <p class="text-secondary">
+                            네 번째 슬라이드와 연결된 콘텐츠입니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 정보 1</h6>
+
+                        <p class="text-secondary mb-0">
+                            네 번째 화면의 상세 정보입니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 정보 2</h6>
+
+                        <p class="text-secondary mb-0">
+                            콘텐츠가 길어져도 하단 영역에서 스크롤됩니다.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <h6>추가 정보 3</h6>
+
+                        <p class="text-secondary mb-0">
+                            필요한 만큼 HTML을 계속 추가하세요.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
     </main>
 
 
@@ -679,16 +921,11 @@
 
         <div class="modal-content">
 
-
-            <!-- MODAL HEADER -->
-
             <div class="modal-header">
 
                 <h5 class="modal-title"
                     id="commonModalTitle">
-
                     제목
-
                 </h5>
 
                 <button type="button"
@@ -699,17 +936,10 @@
 
             </div>
 
-
-
-            <!-- MODAL BODY -->
-
             <div class="modal-body"
                  id="commonModalBody">
-
                 내용
-
             </div>
-
 
         </div>
 
@@ -758,59 +988,46 @@
     });
 
 
+
     // =================================
-    // TEST BUTTON
+    // SLIDER / DETAIL SYNCHRONIZATION
     // =================================
 
-    document.getElementById('testButton')
-        .addEventListener('click', function(e) {
+    const detailPanels =
+        document.querySelectorAll('.detail-panel');
 
-            e.stopPropagation();
+    const detailArea =
+        document.getElementById('detailArea');
 
-            alert('버튼이 정상적으로 동작합니다.');
+
+    // 하단 콘텐츠 변경
+
+    function changeDetail(index) {
+
+        detailPanels.forEach(function(panel) {
+
+            const panelIndex =
+                Number(panel.dataset.detail);
+
+            panel.classList.toggle(
+                'active',
+                panelIndex === index
+            );
 
         });
 
+        // 새로운 콘텐츠를 보여줄 때
+        // 하단 스크롤 위치를 맨 위로 초기화
+
+        detailArea.scrollTop = 0;
+
+    }
 
 
-    // =================================
-    // FOOTER MODAL
-    // =================================
+    // Bootstrap 슬라이드 전환 완료 이벤트
 
-    const commonModal =
-        document.getElementById('commonModal');
+    sliderElement.addEventListener(
+        'slid.bs.carousel',
+        function(event) {
 
-    commonModal.addEventListener('show.bs.modal', function(event) {
-
-        // 클릭한 Footer 버튼
-
-        const button = event.relatedTarget;
-
-
-        // 버튼의 제목과 내용 가져오기
-
-        const title =
-            button.getAttribute('data-title');
-
-        const content =
-            button.getAttribute('data-content');
-
-
-        // Modal 제목 변경
-
-        document.getElementById('commonModalTitle')
-            .textContent = title;
-
-
-        // Modal 내용 변경
-
-        document.getElementById('commonModalBody')
-            .textContent = content;
-
-    });
-
-
-</script>
-
-</body>
-</html>
+            // 현재 활성화된 슬라이
