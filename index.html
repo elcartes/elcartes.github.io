@@ -89,27 +89,39 @@
 
         /* FOOTER */
         .app-footer {
-            height: 60px;
-            min-height: 60px;
-
+            min-height: 45px;
+            height: 45px;
+            flex-shrink: 0;
+        
             background: #ffffff;
             border-top: 1px solid #dee2e6;
-
+        
             display: flex;
             align-items: center;
-            justify-content: space-around;
-        }
-
-        .footer-item {
-            text-align: center;
-            font-size: 12px;
+            justify-content: center;
+        
+            padding: 0 10px;
+        
+            font-size: 11px;
             color: #6c757d;
-            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
         }
-
-        .footer-item.active {
+        
+        .footer-info {
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .footer-info a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 4px;
+        }
+        
+        .footer-info a:hover {
             color: #0d6efd;
-            font-weight: bold;
         }
 
         /* =================================
@@ -341,22 +353,29 @@
 
     <!-- FOOTER -->
     <footer class="app-footer">
-
-        <div class="footer-item active" data-menu="home">
-            <div>⌂</div>
-            <div>홈</div>
+    
+        <div class="footer-info">
+    
+            <span>© 2026 MY APP</span>
+    
+            <span>|</span>
+    
+            <a href="#">회사소개</a>
+    
+            <span>|</span>
+    
+            <a href="#">이용약관</a>
+    
+            <span>|</span>
+    
+            <a href="#">개인정보처리방침</a>
+    
+            <span>|</span>
+    
+            <a href="#">고객센터</a>
+    
         </div>
-
-        <div class="footer-item" data-menu="search">
-            <div>⌕</div>
-            <div>검색</div>
-        </div>
-
-        <div class="footer-item" data-menu="mypage">
-            <div>♙</div>
-            <div>마이페이지</div>
-        </div>
-
+    
     </footer>
 
 
@@ -511,26 +530,6 @@
         .addEventListener('click', function() {
 
             alert('버튼이 정상적으로 동작합니다.');
-
-        });
-
-
-    // Footer 메뉴 선택
-    document.querySelectorAll('.footer-item')
-        .forEach(function(item) {
-
-            item.addEventListener('click', function() {
-
-                document.querySelectorAll('.footer-item')
-                    .forEach(function(el) {
-                        el.classList.remove('active');
-                    });
-
-                this.classList.add('active');
-
-                console.log('선택 메뉴:', this.dataset.menu);
-
-            });
 
         });
 
