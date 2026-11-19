@@ -1,12 +1,306 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Homepage</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Mobile Web Layout</title>
+
+    <!-- =========================================
+         BOOTSTRAP CDN
+    ========================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- =========================================
+         CUSTOM CSS
+    ========================================== -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #e9ecef;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* =========================================
+           MOBILE APP CONTAINER
+           모든 기기에서 모바일 폭으로 표시
+        ========================================== */
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            height: 100dvh;
+            margin: 0 auto;
+
+            background: #ffffff;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+            position: relative;
+
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        }
+
+        /* =========================================
+           HEADER
+        ========================================== */
+        .app-header {
+            height: 60px;
+            min-height: 60px;
+
+            background: #212529;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 16px;
+        }
+
+        .app-header .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           CONTENTS
+        ========================================== */
+        .app-contents {
+            flex: 1;
+            min-height: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding: 16px;
+
+            background: #f8f9fa;
+
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================== */
+        .app-footer {
+            height: 60px;
+            min-height: 60px;
+
+            background: #ffffff;
+            border-top: 1px solid #dee2e6;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .footer-item {
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .footer-item.active {
+            color: #0d6efd;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           PC / TABLET BACKGROUND
+        ========================================== */
+        @media (min-width: 431px) {
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .app-container {
+                height: min(100dvh, 900px);
+                border-radius: 12px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>나만의 홈페이지</h1>
-    <p>Jekyll 테마를 사용하지 않는 독립적인 HTML 페이지입니다.</p>
+
+<!-- =============================================
+     APP CONTAINER
+============================================== -->
+<div class="app-container">
+
+    <!-- =========================================
+         HEADER 영역
+         별도 파일 분리 시: header.html
+    ========================================== -->
+    <header class="app-header">
+
+        <div class="logo">
+            MY MOBILE APP
+        </div>
+
+        <button class="btn btn-outline-light btn-sm"
+                id="menuButton">
+            메뉴
+        </button>
+
+    </header>
+
+
+    <!-- =========================================
+         CONTENTS 영역
+         별도 파일 분리 시: contents.html
+    ========================================== -->
+    <main class="app-contents">
+
+        <h5 class="fw-bold mb-3">
+            메인 콘텐츠
+        </h5>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+
+                <h6 class="card-title">
+                    모바일 화면 테스트
+                </h6>
+
+                <p class="card-text text-secondary">
+                    PC, 태블릿, 모바일에서 동일한 모바일
+                    화면 폭으로 표시됩니다.
+                </p>
+
+                <button class="btn btn-primary w-100"
+                        id="testButton">
+                    버튼 테스트
+                </button>
+
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h6>콘텐츠 영역 2</h6>
+                <p class="text-secondary mb-0">
+                    콘텐츠가 길어지면 이 영역만 스크롤됩니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h6>콘텐츠 영역 3</h6>
+                <p class="text-secondary mb-0">
+                    Header와 Footer는 고정됩니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h6>콘텐츠 영역 4</h6>
+                <p class="text-secondary mb-0">
+                    필요한 만큼 콘텐츠를 추가할 수 있습니다.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER 영역
+         별도 파일 분리 시: footer.html
+    ========================================== -->
+    <footer class="app-footer">
+
+        <div class="footer-item active" data-menu="home">
+            <div>⌂</div>
+            <div>홈</div>
+        </div>
+
+        <div class="footer-item" data-menu="search">
+            <div>⌕</div>
+            <div>검색</div>
+        </div>
+
+        <div class="footer-item" data-menu="mypage">
+            <div>♙</div>
+            <div>마이페이지</div>
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =============================================
+     BOOTSTRAP JAVASCRIPT CDN
+============================================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- =============================================
+     VANILLA JAVASCRIPT
+============================================== -->
+<script>
+
+    // 버튼 이벤트
+    document.getElementById('testButton')
+        .addEventListener('click', function () {
+
+            alert('버튼이 정상적으로 동작합니다.');
+
+        });
+
+
+    // 메뉴 버튼
+    document.getElementById('menuButton')
+        .addEventListener('click', function () {
+
+            alert('메뉴 버튼을 클릭했습니다.');
+
+        });
+
+
+    // Footer 메뉴 선택
+    document.querySelectorAll('.footer-item')
+        .forEach(function (item) {
+
+            item.addEventListener('click', function () {
+
+                document.querySelectorAll('.footer-item')
+                    .forEach(function (el) {
+                        el.classList.remove('active');
+                    });
+
+                this.classList.add('active');
+
+                console.log('선택 메뉴:', this.dataset.menu);
+
+            });
+
+        });
+
+</script>
+
 </body>
 </html>
