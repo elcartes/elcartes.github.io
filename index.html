@@ -1030,4 +1030,75 @@
         'slid.bs.carousel',
         function(event) {
 
-            // 현재 활성화된 슬라이
+            // 현재 활성화된 슬라이드 번호
+
+            const activeIndex =
+                Array.from(
+                    sliderElement.querySelectorAll('.carousel-item')
+                ).indexOf(event.relatedTarget);
+
+
+            // 하단 콘텐츠 변경
+
+            if (activeIndex >= 0) {
+
+                changeDetail(activeIndex);
+
+            }
+
+        }
+    );
+
+
+
+    // =================================
+    // TEST BUTTON
+    // =================================
+
+    document.getElementById('testButton')
+        .addEventListener('click', function(e) {
+
+            e.stopPropagation();
+
+            alert('버튼이 정상적으로 동작합니다.');
+
+        });
+
+
+
+    // =================================
+    // FOOTER MODAL
+    // =================================
+
+    const commonModal =
+        document.getElementById('commonModal');
+
+    commonModal.addEventListener(
+        'show.bs.modal',
+        function(event) {
+
+            const button = event.relatedTarget;
+
+            if (!button) return;
+
+            const title =
+                button.getAttribute('data-title');
+
+            const content =
+                button.getAttribute('data-content');
+
+
+            document.getElementById('commonModalTitle')
+                .textContent = title;
+
+            document.getElementById('commonModalBody')
+                .textContent = content;
+
+        }
+    );
+
+
+</script>
+
+</body>
+</html>
