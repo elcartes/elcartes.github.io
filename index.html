@@ -445,15 +445,6 @@
                 MY APP
             </a>
 
-            <button class="btn-solid theme-secondary"
-                    type="button"
-                    id="menuButton"
-                    aria-expanded="false">
-
-                전체 메뉴
-
-            </button>
-
         </div>
 
     </nav>
@@ -929,104 +920,6 @@
             alert('버튼이 정상적으로 동작합니다.');
 
         });
-
-
-    // =================================
-    // SIDE MENU
-    // =================================
-
-    const menuButton =
-        document.getElementById('menuButton');
-
-    const closeMenu =
-        document.getElementById('closeMenu');
-
-    const sideMenu =
-        document.getElementById('sideMenu');
-
-    const menuOverlay =
-        document.getElementById('menuOverlay');
-
-
-    // OPEN MENU
-
-    function openMenu() {
-
-        sideMenu.classList.add('active');
-
-        menuOverlay.classList.add('active');
-
-        sideMenu.setAttribute('aria-hidden', 'false');
-
-        sideMenu.removeAttribute('inert');
-
-        menuButton.setAttribute('aria-expanded', 'true');
-
-        closeMenu.focus();
-
-    }
-
-
-    // CLOSE MENU
-
-    function hideMenu() {
-
-        sideMenu.classList.remove('active');
-
-        menuOverlay.classList.remove('active');
-
-        sideMenu.setAttribute('aria-hidden', 'true');
-
-        sideMenu.setAttribute('inert', '');
-
-        menuButton.setAttribute('aria-expanded', 'false');
-
-        menuButton.focus();
-
-    }
-
-
-    menuButton.addEventListener('click', openMenu);
-
-    closeMenu.addEventListener('click', hideMenu);
-
-    menuOverlay.addEventListener('click', hideMenu);
-
-
-    // MENU ITEM CLICK
-
-    document.querySelectorAll('.menu-item')
-        .forEach(function(item) {
-
-            item.addEventListener('click', function(e) {
-
-                e.preventDefault();
-
-                console.log(
-                    '선택 메뉴:',
-                    this.textContent.trim()
-                );
-
-                hideMenu();
-
-            });
-
-        });
-
-
-    // ESC KEY
-
-    document.addEventListener('keydown', function(e) {
-
-        if (e.key === 'Escape' &&
-            sideMenu.classList.contains('active')) {
-
-            hideMenu();
-
-        }
-
-    });
-
 </script>
 
 </body>
