@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,6 +12,7 @@
           rel="stylesheet">
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -24,18 +24,29 @@
             padding: 0;
         }
 
+        /* 스크롤바 영역 고정 */
+        html {
+            scrollbar-gutter: stable;
+        }
+
         body {
             background: #e9ecef;
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
 
-        /* APP CONTAINER */
+
+        /* =================================
+           APP CONTAINER
+        ================================= */
+
         .app-container {
             width: 100%;
             max-width: 430px;
+
             height: 100vh;
             height: 100dvh;
+
             margin: 0 auto;
 
             background: #ffffff;
@@ -44,12 +55,20 @@
             flex-direction: column;
 
             overflow: hidden;
+
             position: relative;
 
             box-shadow: 0 0 20px rgba(0,0,0,0.08);
+
+            /* 레이아웃 이동 방지 */
+            isolation: isolate;
         }
 
-        /* HEADER */
+
+        /* =================================
+           HEADER
+        ================================= */
+
         .app-header {
             height: 60px;
             min-height: 60px;
@@ -72,7 +91,11 @@
             font-weight: bold;
         }
 
-        /* CONTENTS */
+
+        /* =================================
+           CONTENTS
+        ================================= */
+
         .app-contents {
             flex: 1;
             min-height: 0;
@@ -85,50 +108,59 @@
             background: #f8f9fa;
 
             -webkit-overflow-scrolling: touch;
+
+            overscroll-behavior: contain;
         }
 
-        /* FOOTER */
+
+        /* =================================
+           FOOTER
+        ================================= */
+
         .app-footer {
             min-height: 45px;
             height: 45px;
             flex-shrink: 0;
-        
+
             background: #ffffff;
             border-top: 1px solid #dee2e6;
-        
+
             display: flex;
             align-items: center;
             justify-content: center;
-        
+
             padding: 0 10px;
-        
+
             font-size: 11px;
             color: #6c757d;
+
             white-space: nowrap;
             overflow: hidden;
         }
-        
+
         .footer-info {
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         .footer-info a {
             color: #6c757d;
             text-decoration: none;
             margin: 0 4px;
         }
-        
+
         .footer-info a:hover {
             color: #0d6efd;
         }
+
 
         /* =================================
            RIGHT SLIDE MENU
         ================================= */
 
         /* 메뉴 배경 오버레이 */
+
         .menu-overlay {
             position: absolute;
             inset: 0;
@@ -137,19 +169,30 @@
 
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
 
-            transition: opacity 0.3s ease,
-                        visibility 0.3s ease;
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
 
             z-index: 20;
+
+            /* GPU 렌더링 */
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .menu-overlay.active {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
 
-        /* 우측 슬라이드 메뉴 */
+
+        /* =================================
+           SIDE MENU
+        ================================= */
+
         .side-menu {
             position: absolute;
 
@@ -162,8 +205,10 @@
 
             background: #ffffff;
 
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+            /* 기존 translateX 대신 GPU 가속 */
+            transform: translate3d(100%, 0, 0);
+
+            transition: transform 0.25s ease;
 
             z-index: 30;
 
@@ -171,13 +216,27 @@
             flex-direction: column;
 
             box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+
+            /* 애니메이션 최적화 */
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+
+            /* 메뉴 내부 스크롤 */
+            overflow: hidden;
+
+            overscroll-behavior: contain;
         }
 
         .side-menu.active {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
         }
 
-        /* 메뉴 헤더 */
+
+        /* =================================
+           MENU HEADER
+        ================================= */
+
         .side-menu-header {
             height: 60px;
             min-height: 60px;
@@ -208,11 +267,23 @@
             cursor: pointer;
         }
 
-        /* 메뉴 콘텐츠 */
+
+        /* =================================
+           MENU CONTENT
+        ================================= */
+
         .side-menu-content {
             flex: 1;
+            min-height: 0;
+
             overflow-y: auto;
+            overflow-x: hidden;
+
             padding: 15px 0;
+
+            -webkit-overflow-scrolling: touch;
+
+            overscroll-behavior: contain;
         }
 
         .side-menu-item {
@@ -241,18 +312,29 @@
             font-size: 19px;
         }
 
-        /* 메뉴 하단 */
+
+        /* =================================
+           MENU FOOTER
+        ================================= */
+
         .side-menu-footer {
             padding: 20px;
+
             border-top: 1px solid #dee2e6;
 
             font-size: 12px;
             color: #adb5bd;
+
             text-align: center;
         }
 
-        /* PC / TABLET */
+
+        /* =================================
+           PC / TABLET
+        ================================= */
+
         @media (min-width: 431px) {
+
             body {
                 display: flex;
                 align-items: center;
@@ -261,18 +343,39 @@
 
             .app-container {
                 height: min(100dvh, 900px);
+
                 border-radius: 12px;
             }
+
+        }
+
+
+        /* =================================
+           REDUCED MOTION
+        ================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .side-menu,
+            .menu-overlay {
+                transition: none;
+            }
+
         }
 
     </style>
 </head>
 
+
 <body>
 
 <div class="app-container">
 
-    <!-- HEADER -->
+
+    <!-- =================================
+         HEADER
+    ================================= -->
+
     <header class="app-header">
 
         <div class="logo">
@@ -292,14 +395,20 @@
     </header>
 
 
-    <!-- CONTENTS -->
+
+    <!-- =================================
+         CONTENTS
+    ================================= -->
+
     <main class="app-contents">
 
         <h5 class="fw-bold mb-3">
             메인 콘텐츠
         </h5>
 
+
         <div class="card shadow-sm mb-3">
+
             <div class="card-body">
 
                 <h6 class="card-title">
@@ -319,81 +428,114 @@
                 </button>
 
             </div>
+
         </div>
 
+
         <div class="card shadow-sm mb-3">
+
             <div class="card-body">
+
                 <h6>콘텐츠 영역 2</h6>
+
                 <p class="text-secondary mb-0">
                     콘텐츠가 길어지면 이 영역만 스크롤됩니다.
                 </p>
+
             </div>
+
         </div>
 
+
         <div class="card shadow-sm mb-3">
+
             <div class="card-body">
+
                 <h6>콘텐츠 영역 3</h6>
+
                 <p class="text-secondary mb-0">
                     Header와 Footer는 고정됩니다.
                 </p>
+
             </div>
+
         </div>
 
+
         <div class="card shadow-sm mb-3">
+
             <div class="card-body">
+
                 <h6>콘텐츠 영역 4</h6>
+
                 <p class="text-secondary mb-0">
                     필요한 만큼 콘텐츠를 추가할 수 있습니다.
                 </p>
+
             </div>
+
         </div>
+
 
     </main>
 
 
-    <!-- FOOTER -->
+
+    <!-- =================================
+         FOOTER
+    ================================= -->
+
     <footer class="app-footer">
-    
+
         <div class="footer-info">
-    
+
             <span>© 2026 MY APP</span>
-    
+
             <span>|</span>
-    
+
             <a href="#">회사소개</a>
-    
+
             <span>|</span>
-    
+
             <a href="#">이용약관</a>
-    
+
             <span>|</span>
-    
+
             <a href="#">개인정보처리방침</a>
-    
+
             <span>|</span>
-    
+
             <a href="#">고객센터</a>
-    
+
         </div>
-    
+
     </footer>
+
 
 
     <!-- =================================
          RIGHT SLIDE MENU OVERLAY
-    ================================== -->
+    ================================= -->
 
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay"
+         id="menuOverlay">
+    </div>
 
 
-    <!-- RIGHT SLIDE MENU -->
+
+    <!-- =================================
+         RIGHT SLIDE MENU
+    ================================= -->
+
     <aside class="side-menu"
            id="sideMenu"
            aria-label="전체 메뉴"
            aria-hidden="true"
            inert>
 
+
         <!-- MENU HEADER -->
+
         <div class="side-menu-header">
 
             <div class="side-menu-title">
@@ -411,7 +553,9 @@
         </div>
 
 
+
         <!-- MENU CONTENT -->
+
         <nav class="side-menu-content">
 
             <a href="#" class="side-menu-item">
@@ -447,76 +591,117 @@
         </nav>
 
 
+
         <!-- MENU FOOTER -->
+
         <div class="side-menu-footer">
             MY MOBILE APP v1.0
         </div>
 
+
     </aside>
+
 
 </div>
 
 
-<!-- BOOTSTRAP JAVASCRIPT -->
+
+<!-- =================================
+     BOOTSTRAP JAVASCRIPT
+================================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<!-- VANILLA JAVASCRIPT -->
+
+<!-- =================================
+     VANILLA JAVASCRIPT
+================================= -->
+
 <script>
 
     const menuButton = document.getElementById('menuButton');
+
     const closeMenu = document.getElementById('closeMenu');
+
     const sideMenu = document.getElementById('sideMenu');
+
     const menuOverlay = document.getElementById('menuOverlay');
 
+
+    // =================================
     // 메뉴 열기
+    // =================================
+
     function openMenu() {
 
         sideMenu.classList.add('active');
+
         menuOverlay.classList.add('active');
 
         sideMenu.setAttribute('aria-hidden', 'false');
+
         sideMenu.removeAttribute('inert');
 
         menuButton.setAttribute('aria-expanded', 'true');
-
-        document.body.style.overflow = 'hidden';
 
         closeMenu.focus();
 
     }
 
+
+    // =================================
     // 메뉴 닫기
+    // =================================
+
     function hideMenu() {
 
         sideMenu.classList.remove('active');
+
         menuOverlay.classList.remove('active');
 
         sideMenu.setAttribute('aria-hidden', 'true');
+
         sideMenu.setAttribute('inert', '');
 
         menuButton.setAttribute('aria-expanded', 'false');
-
-        document.body.style.overflow = '';
 
         menuButton.focus();
 
     }
 
+
+    // =================================
     // 헤더 메뉴 버튼
+    // =================================
+
     menuButton.addEventListener('click', openMenu);
 
+
+    // =================================
     // 닫기 버튼
+    // =================================
+
     closeMenu.addEventListener('click', hideMenu);
 
+
+    // =================================
     // 배경 클릭 시 닫기
+    // =================================
+
     menuOverlay.addEventListener('click', hideMenu);
 
+
+    // =================================
     // ESC 키로 닫기
+    // =================================
+
     document.addEventListener('keydown', function(e) {
 
-        if (e.key === 'Escape' &&
-            sideMenu.classList.contains('active')) {
+        if (
+            e.key === 'Escape' &&
+            sideMenu.classList.contains('active')
+        ) {
 
             hideMenu();
 
@@ -525,7 +710,10 @@
     });
 
 
+    // =================================
     // 버튼 테스트
+    // =================================
+
     document.getElementById('testButton')
         .addEventListener('click', function() {
 
@@ -534,7 +722,10 @@
         });
 
 
+    // =================================
     // 슬라이드 메뉴 항목 클릭
+    // =================================
+
     document.querySelectorAll('.side-menu-item')
         .forEach(function(item) {
 
@@ -542,7 +733,10 @@
 
                 e.preventDefault();
 
-                console.log('선택 메뉴:', this.textContent.trim());
+                console.log(
+                    '선택 메뉴:',
+                    this.textContent.trim()
+                );
 
                 hideMenu();
 
@@ -550,7 +744,9 @@
 
         });
 
+
 </script>
+
 
 </body>
 </html>
