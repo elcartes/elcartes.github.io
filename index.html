@@ -65,7 +65,7 @@
 
 
         /* =================================
-           NAVBAR HEADER
+           HEADER
         ================================= */
 
         .app-header {
@@ -82,7 +82,6 @@
 
         .app-header .container-fluid {
             height: 100%;
-
             padding: 0 16px;
 
             display: flex;
@@ -92,21 +91,9 @@
 
         .navbar-brand {
             color: #ffffff !important;
-
             font-size: 18px;
             font-weight: bold;
-
             margin: 0;
-        }
-
-        .navbar-nav {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .navbar-nav .nav-item {
-            list-style: none;
         }
 
 
@@ -116,13 +103,9 @@
 
         .btn-solid {
             border: 1px solid #6c757d;
-
             border-radius: 5px;
-
             padding: 6px 12px;
-
             font-size: 13px;
-
             cursor: pointer;
         }
 
@@ -145,16 +128,96 @@
             flex: 1;
             min-height: 0;
 
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
 
             padding: 16px;
 
             background: #f8f9fa;
 
+            position: relative;
+        }
+
+
+        /* =================================
+           SLIDER
+        ================================= */
+
+        .contents-slider {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contents-slider .carousel-inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contents-slider .carousel-item {
+            height: 100%;
+        }
+
+        .slide-content {
+            height: 100%;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding: 5px 35px 20px;
+
             -webkit-overflow-scrolling: touch;
 
             overscroll-behavior: contain;
+        }
+
+        /* SLIDE ARROWS */
+
+        .contents-slider .carousel-control-prev,
+        .contents-slider .carousel-control-next {
+            width: 32px;
+
+            opacity: 1;
+
+            z-index: 5;
+        }
+
+        .contents-slider .carousel-control-prev {
+            left: 0;
+        }
+
+        .contents-slider .carousel-control-next {
+            right: 0;
+        }
+
+        .contents-slider .carousel-control-prev-icon,
+        .contents-slider .carousel-control-next-icon {
+            width: 25px;
+            height: 25px;
+
+            background-color: #495057;
+
+            background-size: 60%;
+
+            border-radius: 50%;
+
+            padding: 5px;
+        }
+
+        /* SLIDE INDICATORS */
+
+        .contents-slider .carousel-indicators {
+            margin-bottom: 0;
+            bottom: 0;
+        }
+
+        .contents-slider .carousel-indicators button {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background-color: #495057;
+
+            margin: 0 4px;
         }
 
 
@@ -202,44 +265,27 @@
 
 
         /* =================================
-           MENU OVERLAY
+           SIDE MENU
         ================================= */
 
         .menu-overlay {
             position: absolute;
-
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
+
+            z-index: 20;
 
             opacity: 0;
             visibility: hidden;
 
-            pointer-events: none;
-
-            transition:
-                opacity 0.25s ease,
-                visibility 0.25s ease;
-
-            z-index: 20;
-
-            transform: translateZ(0);
-
-            backface-visibility: hidden;
+            transition: 0.3s;
         }
 
         .menu-overlay.active {
             opacity: 1;
             visibility: visible;
-
-            pointer-events: auto;
         }
-
-
-        /* =================================
-           RIGHT SLIDE MENU
-           NAVBAR MENU STRUCTURE
-        ================================= */
 
         .menu {
             position: absolute;
@@ -247,52 +293,33 @@
             top: 0;
             right: 0;
 
-            width: 280px;
-            max-width: 85%;
-
+            width: 80%;
+            max-width: 320px;
             height: 100%;
 
             background: #ffffff;
 
+            z-index: 30;
+
             display: flex;
             flex-direction: column;
 
-            overflow: hidden;
+            transform: translateX(100%);
+
+            transition: transform 0.3s ease;
 
             box-shadow: -5px 0 20px rgba(0,0,0,0.15);
-
-            /* 슬라이드 애니메이션 */
-            transform: translate3d(100%, 0, 0);
-
-            transition: transform 0.25s ease;
-
-            will-change: transform;
-
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-
-            z-index: 30;
-
-            pointer-events: none;
         }
 
         .menu.active {
-            transform: translate3d(0, 0, 0);
-
-            pointer-events: auto;
+            transform: translateX(0);
         }
-
-
-        /* =================================
-           MENU HEADER
-        ================================= */
 
         .menu-header {
             height: 60px;
             min-height: 60px;
 
             background: #212529;
-
             color: #ffffff;
 
             display: flex;
@@ -310,32 +337,19 @@
         .menu-close {
             background: none;
             border: none;
-
             color: #ffffff;
-
             font-size: 28px;
             line-height: 1;
-
             cursor: pointer;
         }
-
-
-        /* =================================
-           MENU ITEMS
-        ================================= */
 
         .menu-content {
             flex: 1;
             min-height: 0;
 
             overflow-y: auto;
-            overflow-x: hidden;
 
             padding: 15px 0;
-
-            -webkit-overflow-scrolling: touch;
-
-            overscroll-behavior: contain;
         }
 
         .menu-item {
@@ -345,14 +359,11 @@
             padding: 16px 20px;
 
             color: #343a40;
-
             text-decoration: none;
 
             font-size: 15px;
 
             border-bottom: 1px solid #f1f1f1;
-
-            transition: background 0.2s;
         }
 
         .menu-item:hover {
@@ -362,18 +373,11 @@
 
         .menu-icon {
             width: 35px;
-
             font-size: 19px;
         }
 
-
-        /* =================================
-           MENU FOOTER
-        ================================= */
-
         .menu-footer {
             padding: 20px;
-
             border-top: 1px solid #dee2e6;
 
             font-size: 12px;
@@ -397,7 +401,6 @@
 
             .app-container {
                 height: min(100dvh, 900px);
-
                 border-radius: 12px;
             }
 
@@ -415,6 +418,10 @@
                 transition: none;
             }
 
+            .carousel-item {
+                transition: none !important;
+            }
+
         }
 
     </style>
@@ -427,7 +434,7 @@
 
 
     <!-- =================================
-         NAVBAR HEADER
+         HEADER
     ================================= -->
 
     <nav class="navbar app-header" data-bs-theme="dark">
@@ -438,25 +445,14 @@
                 MY APP
             </a>
 
+            <button class="btn-solid theme-secondary"
+                    type="button"
+                    id="menuButton"
+                    aria-expanded="false">
 
-            <ul class="navbar-nav">
+                전체 메뉴
 
-                <li class="nav-item">
-
-                    <button class="btn-solid theme-secondary"
-                            type="button"
-                            data-bs-toggle="menu"
-                            aria-expanded="false"
-                            aria-controls="sideMenu"
-                            id="menuButton">
-
-                        ☰ 메뉴
-
-                    </button>
-
-                </li>
-
-            </ul>
+            </button>
 
         </div>
 
@@ -465,82 +461,299 @@
 
 
     <!-- =================================
-         CONTENTS
+         CONTENTS SLIDER
     ================================= -->
 
     <main class="app-contents">
 
-        <h5 class="fw-bold mb-3">
-            메인 콘텐츠
-        </h5>
+        <div id="contentsSlider"
+             class="carousel slide contents-slider"
+             data-bs-ride="carousel"
+             data-bs-interval="2000"
+             data-bs-pause="false"
+             data-bs-touch="true"
+             data-bs-wrap="true">
 
 
-        <div class="card shadow-sm mb-3">
+            <!-- SLIDE INDICATORS -->
 
-            <div class="card-body">
+            <div class="carousel-indicators">
 
-                <h6 class="card-title">
-                    모바일 화면 테스트
-                </h6>
+                <button type="button"
+                        data-bs-target="#contentsSlider"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="슬라이드 1">
+                </button>
 
-                <p class="card-text text-secondary">
-                    PC, 태블릿, 모바일에서 동일한 모바일
-                    화면 폭으로 표시됩니다.
-                </p>
+                <button type="button"
+                        data-bs-target="#contentsSlider"
+                        data-bs-slide-to="1"
+                        aria-label="슬라이드 2">
+                </button>
 
-                <button class="btn btn-primary w-100"
-                        id="testButton">
+                <button type="button"
+                        data-bs-target="#contentsSlider"
+                        data-bs-slide-to="2"
+                        aria-label="슬라이드 3">
+                </button>
 
-                    버튼 테스트
-
+                <button type="button"
+                        data-bs-target="#contentsSlider"
+                        data-bs-slide-to="3"
+                        aria-label="슬라이드 4">
                 </button>
 
             </div>
 
-        </div>
 
 
-        <div class="card shadow-sm mb-3">
+            <!-- SLIDE CONTENTS -->
 
-            <div class="card-body">
+            <div class="carousel-inner">
 
-                <h6>콘텐츠 영역 2</h6>
 
-                <p class="text-secondary mb-0">
-                    콘텐츠가 길어지면 이 영역만 스크롤됩니다.
-                </p>
+                <!-- =================================
+                     SLIDE 1
+                ================================= -->
+
+                <div class="carousel-item active">
+
+                    <div class="slide-content">
+
+                        <h5 class="fw-bold mb-3">
+                            메인 콘텐츠
+                        </h5>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6 class="card-title">
+                                    모바일 화면 테스트
+                                </h6>
+
+                                <p class="card-text text-secondary">
+                                    PC, 태블릿, 모바일에서 동일한 모바일
+                                    화면 폭으로 표시됩니다.
+                                </p>
+
+                                <button class="btn btn-primary w-100"
+                                        id="testButton">
+
+                                    버튼 테스트
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>메인 콘텐츠 영역</h6>
+
+                                <p class="text-secondary mb-0">
+                                    첫 번째 슬라이드입니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     SLIDE 2
+                ================================= -->
+
+                <div class="carousel-item">
+
+                    <div class="slide-content">
+
+                        <h5 class="fw-bold mb-3">
+                            콘텐츠 영역 2
+                        </h5>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>두 번째 화면</h6>
+
+                                <p class="text-secondary">
+                                    두 번째 슬라이드 콘텐츠입니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>추가 콘텐츠</h6>
+
+                                <p class="text-secondary mb-0">
+                                    필요한 내용을 자유롭게 추가할 수 있습니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     SLIDE 3
+                ================================= -->
+
+                <div class="carousel-item">
+
+                    <div class="slide-content">
+
+                        <h5 class="fw-bold mb-3">
+                            콘텐츠 영역 3
+                        </h5>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>세 번째 화면</h6>
+
+                                <p class="text-secondary">
+                                    좌우 스와이프 또는 화살표 버튼으로
+                                    이동할 수 있습니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>상세 콘텐츠</h6>
+
+                                <p class="text-secondary mb-0">
+                                    슬라이드별로 독립적인 콘텐츠를 표시합니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     SLIDE 4
+                ================================= -->
+
+                <div class="carousel-item">
+
+                    <div class="slide-content">
+
+                        <h5 class="fw-bold mb-3">
+                            콘텐츠 영역 4
+                        </h5>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>네 번째 화면</h6>
+
+                                <p class="text-secondary">
+                                    마지막 슬라이드입니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+
+                                <h6>마지막 콘텐츠</h6>
+
+                                <p class="text-secondary mb-0">
+                                    다음 슬라이드는 첫 번째 화면으로 돌아갑니다.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
-        </div>
 
 
-        <div class="card shadow-sm mb-3">
+            <!-- =================================
+                 LEFT ARROW
+            ================================= -->
 
-            <div class="card-body">
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#contentsSlider"
+                    data-bs-slide="prev"
+                    aria-label="이전 슬라이드">
 
-                <h6>콘텐츠 영역 3</h6>
+                <span class="carousel-control-prev-icon"
+                      aria-hidden="true">
+                </span>
 
-                <p class="text-secondary mb-0">
-                    Header와 Footer는 고정됩니다.
-                </p>
-
-            </div>
-
-        </div>
+            </button>
 
 
-        <div class="card shadow-sm mb-3">
 
-            <div class="card-body">
+            <!-- =================================
+                 RIGHT ARROW
+            ================================= -->
 
-                <h6>콘텐츠 영역 4</h6>
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#contentsSlider"
+                    data-bs-slide="next"
+                    aria-label="다음 슬라이드">
 
-                <p class="text-secondary mb-0">
-                    필요한 만큼 콘텐츠를 추가할 수 있습니다.
-                </p>
+                <span class="carousel-control-next-icon"
+                      aria-hidden="true">
+                </span>
 
-            </div>
+            </button>
+
 
         </div>
 
@@ -591,91 +804,75 @@
 
 
     <!-- =================================
-         NAVBAR SLIDE MENU
+         SIDE MENU
     ================================= -->
 
-    <ul class="navbar-nav">
-
-        <li class="nav-item" data-bs-theme="dark">
-
-            <div class="menu"
-                 id="sideMenu"
-                 aria-label="전체 메뉴"
-                 aria-hidden="true"
-                 inert>
+    <div class="menu"
+         id="sideMenu"
+         aria-label="전체 메뉴"
+         aria-hidden="true"
+         inert>
 
 
-                <!-- MENU HEADER -->
+        <div class="menu-header">
 
-                <div class="menu-header">
-
-                    <div class="menu-title">
-                        전체 메뉴
-                    </div>
-
-                    <button class="menu-close"
-                            type="button"
-                            id="closeMenu"
-                            aria-label="메뉴 닫기">
-
-                        &times;
-
-                    </button>
-
-                </div>
-
-
-
-                <!-- MENU CONTENT -->
-
-                <nav class="menu-content">
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">⌂</span>
-                        홈
-                    </a>
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">⌕</span>
-                        검색
-                    </a>
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">♙</span>
-                        마이페이지
-                    </a>
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">⚙</span>
-                        설정
-                    </a>
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">♧</span>
-                        고객센터
-                    </a>
-
-                    <a class="menu-item" href="#">
-                        <span class="menu-icon">ⓘ</span>
-                        앱 정보
-                    </a>
-
-                </nav>
-
-
-
-                <!-- MENU FOOTER -->
-
-                <div class="menu-footer">
-                    MY MOBILE APP v1.0
-                </div>
-
-
+            <div class="menu-title">
+                전체 메뉴
             </div>
 
-        </li>
+            <button class="menu-close"
+                    type="button"
+                    id="closeMenu"
+                    aria-label="메뉴 닫기">
 
-    </ul>
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <nav class="menu-content">
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">⌂</span>
+                홈
+            </a>
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">⌕</span>
+                검색
+            </a>
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">♙</span>
+                마이페이지
+            </a>
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">⚙</span>
+                설정
+            </a>
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">♧</span>
+                고객센터
+            </a>
+
+            <a class="menu-item" href="#">
+                <span class="menu-icon">ⓘ</span>
+                앱 정보
+            </a>
+
+        </nav>
+
+
+        <div class="menu-footer">
+            MY MOBILE APP v1.0
+        </div>
+
+
+    </div>
 
 
 </div>
@@ -696,18 +893,62 @@
 
 <script>
 
-    const menuButton = document.getElementById('menuButton');
+    // =================================
+    // SLIDER INITIALIZATION
+    // =================================
 
-    const closeMenu = document.getElementById('closeMenu');
+    const sliderElement =
+        document.getElementById('contentsSlider');
 
-    const sideMenu = document.getElementById('sideMenu');
+    const slider = new bootstrap.Carousel(sliderElement, {
 
-    const menuOverlay = document.getElementById('menuOverlay');
+        interval: 2000,
+
+        ride: 'carousel',
+
+        pause: false,
+
+        wrap: true,
+
+        touch: true,
+
+        keyboard: true
+
+    });
 
 
     // =================================
-    // 메뉴 열기
+    // TEST BUTTON
     // =================================
+
+    document.getElementById('testButton')
+        .addEventListener('click', function(e) {
+
+            e.stopPropagation();
+
+            alert('버튼이 정상적으로 동작합니다.');
+
+        });
+
+
+    // =================================
+    // SIDE MENU
+    // =================================
+
+    const menuButton =
+        document.getElementById('menuButton');
+
+    const closeMenu =
+        document.getElementById('closeMenu');
+
+    const sideMenu =
+        document.getElementById('sideMenu');
+
+    const menuOverlay =
+        document.getElementById('menuOverlay');
+
+
+    // OPEN MENU
 
     function openMenu() {
 
@@ -726,9 +967,7 @@
     }
 
 
-    // =================================
-    // 메뉴 닫기
-    // =================================
+    // CLOSE MENU
 
     function hideMenu() {
 
@@ -747,72 +986,14 @@
     }
 
 
-    // =================================
-    // NAVBAR MENU BUTTON
-    // =================================
-
-    menuButton.addEventListener('click', function() {
-
-        if (sideMenu.classList.contains('active')) {
-
-            hideMenu();
-
-        } else {
-
-            openMenu();
-
-        }
-
-    });
-
-
-    // =================================
-    // CLOSE BUTTON
-    // =================================
+    menuButton.addEventListener('click', openMenu);
 
     closeMenu.addEventListener('click', hideMenu);
-
-
-    // =================================
-    // OVERLAY CLICK
-    // =================================
 
     menuOverlay.addEventListener('click', hideMenu);
 
 
-    // =================================
-    // ESC KEY
-    // =================================
-
-    document.addEventListener('keydown', function(e) {
-
-        if (
-            e.key === 'Escape' &&
-            sideMenu.classList.contains('active')
-        ) {
-
-            hideMenu();
-
-        }
-
-    });
-
-
-    // =================================
-    // TEST BUTTON
-    // =================================
-
-    document.getElementById('testButton')
-        .addEventListener('click', function() {
-
-            alert('버튼이 정상적으로 동작합니다.');
-
-        });
-
-
-    // =================================
     // MENU ITEM CLICK
-    // =================================
 
     document.querySelectorAll('.menu-item')
         .forEach(function(item) {
@@ -832,6 +1013,19 @@
 
         });
 
+
+    // ESC KEY
+
+    document.addEventListener('keydown', function(e) {
+
+        if (e.key === 'Escape' &&
+            sideMenu.classList.contains('active')) {
+
+            hideMenu();
+
+        }
+
+    });
 
 </script>
 
