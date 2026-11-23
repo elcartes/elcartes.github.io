@@ -1,11 +1,17 @@
 <body>
+  <button id="addTextButton" type="button">element추가</button>
+
   <script>
     function Index() {
       const text = document.createElement("Text");
-      text.textContent = "Vanilla JS - element생성";
+      text.textContent = "Vanilla JS - element추가";
       return text;
     }
 
-    document.body.append(Index());
+    const button = document.getElementById("addTextButton");
+
+    button.addEventListener("click", () => {
+      document.body.append(Index());
+    });
   </script>
 </body>
